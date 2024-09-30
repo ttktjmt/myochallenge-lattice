@@ -7,7 +7,6 @@ from stable_baselines3.common.monitor import Monitor
 from models.monitors import MonitorTensor
 from stable_baselines3.common.vec_env import VecNormalize
 
-'''
 from envs.isaacgym_envs.envs.dummy_vecenv import MyDummyVecEnv
 
 
@@ -74,7 +73,6 @@ class VecEnvManager:
             del self.envs.venv
             self.envs.venv = None
 
-'''
 
 
 # Function that creates and monitors vectorized environments:
