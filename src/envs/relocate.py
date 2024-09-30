@@ -17,10 +17,11 @@ class CustomRelocateEnvPhase2(RelocateEnvV0):  #RelocateEnvV0Phase2
         "rot_dist": 1.0
     }
 
-    def __init__(self, model_path, obsd_model_path=None, seed=None, **kwargs):
+    def __init__(self, model_path, obsd_model_path=None, seed=None, render_mode=None, **kwargs):
         # Two step construction (init+setup) is required for pickling to work correctly.
-        gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, **kwargs)
+        gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, render_mode, **kwargs)
         BaseV0.__init__(self, model_path=model_path, obsd_model_path=obsd_model_path, seed=seed, env_credits=self.MYO_CREDIT)
+        self.render_mode = render_mode
         self._setup(**kwargs)
     
     # def __init__(self, model_path, obsd_model_path=None, seed=None, **kwargs):
