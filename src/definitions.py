@@ -155,7 +155,7 @@ ENV_INFO = {
     "CustomChaseTag": CHASETAG_INFO_KEYS,
     "CustomRelocateEnv": RELOCATE_INFO_KEYS,
     "CustomRelocateEnvPhase2": RELOCATE_INFO_KEYS,
-    "myoChallengeBimanual-v0": BIMANUAL_INFO_KEYS,
+    "Bimanual": BIMANUAL_INFO_KEYS,
 }
 
 OBS_ID_MAP = {

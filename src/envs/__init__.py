@@ -402,3 +402,17 @@ gym.envs.registration.register(id='CustomRelocateEnvPhase2-v0',
             'obj_friction_range': {'high':[1.2, 0.006, 0.00012], 'low':[0.8, 0.004, 0.00008]}
         }
     )
+
+# add bimanual (ref: myosuite/envs/myo/myochallenge/__init__.py)
+gym.envs.registration.register(id='myoChallengeBimanual-v0',
+        entry_point='envs.bimanual_v0:BimanualEnvV1',
+        max_episode_steps=300,
+        kwargs={
+            'model_path': myosuite_path + '/assets/arm/myoarm_bionic_bimanual.xml',
+            'normalize_act': True,
+            'frame_skip': 5,
+            'obj_scale_change': [0.1, 0.05, 0.1],  # 10%, 5%, 10% scale variations in respective geom directions
+            'obj_mass_change': (-0.050, 0.050),  # +-50gms
+            'obj_friction_change': (0.1, 0.001, 0.00002)  # nominal: 1.0, 0.005, 0.0001
+        }
+    )

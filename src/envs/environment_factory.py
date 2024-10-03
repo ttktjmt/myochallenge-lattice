@@ -84,7 +84,10 @@ class EnvironmentFactory:
             return gym.make("myoChallengeRelocateP2-v0", **kwargs)
         elif env_name == "ChaseTagEnvPhase2":
             return gym.make("myoChallengeChaseTagP2-v0", **kwargs)
-            
+        # add envs for myochallenge 2024
+        elif env_name == "Bimanual":
+            return gym.make("myoChallengeBimanual-v0", **kwargs)
+
         # Muscle environments
         elif env_name == "MuscleElbowPoseFixed":
             return gym.make("MuscleElbowPoseFixed-v0", **kwargs)
