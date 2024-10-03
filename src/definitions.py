@@ -98,10 +98,35 @@ RELOCATE_INFO_KEYS = {
     "obj_shift",
     "palm_dist",
     "open_hand",
-    "tip_dist"
+    "tip_dist",
 }
 
 ISAAC_REACH_INFO_KEYS = {}
+
+BIMANUAL_INFO_KEYS = { # set this same as the RELOCATE_INFO_KEYS temporary
+    "done",
+    "solved",
+    "alive",
+    "sparse",
+    "act_reg",
+    "pos_dist",
+    "rot_dist",
+    # "reach_dist",
+    "reach_dist_xy",
+    "reach_dist_z",
+    "lift_bonus",
+    "pos_dist_z",
+    "dense",
+    "max_app",
+    "contact_hand_obj",
+    "rot_palm_obj",
+    "min_app",
+    "close_bonus",
+    "obj_shift",
+    "palm_dist",
+    "open_hand",
+    "tip_dist",
+}
 
 ENV_INFO = {
     "MuscleElbowPoseFixed": POSE_INFO_KEYS,
@@ -130,6 +155,7 @@ ENV_INFO = {
     "CustomChaseTag": CHASETAG_INFO_KEYS,
     "CustomRelocateEnv": RELOCATE_INFO_KEYS,
     "CustomRelocateEnvPhase2": RELOCATE_INFO_KEYS,
+    "myoChallengeBimanual-v0": BIMANUAL_INFO_KEYS,
 }
 
 OBS_ID_MAP = {

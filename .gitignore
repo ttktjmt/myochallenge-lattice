@@ -139,3 +139,7 @@ dmypy.json
 
 # VS Code
 .vscode/launch.json
+
+# model outputs
+output/training_mani/
+64
