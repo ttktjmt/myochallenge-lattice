@@ -1,0 +1,13 @@
+[submodule "data/myosuite/simhive/YCB_sim"]
+	path = data/myosuite/simhive/YCB_sim
+	url = https://github.com/vikashplus/YCB_sim.git
+[submodule "data/myosuite/simhive/myo_sim"]
+	path = data/myosuite/simhive/myo_sim
+	url = https://github.com/MyoHub/myo_sim.git
+[submodule "data/myosuite/simhive/furniture_sim"]
+	path = data/myosuite/simhive/furniture_sim
+	url = https://github.com/vikashplus/furniture_sim.git
+[submodule "data/myosuite/simhive/object_sim"]
+	path = data/myosuite/simhive/object_sim
+	url = https://github.com/vikashplus/object_sim.git
+

@@ -12,7 +12,8 @@ import os, time
 
 from scipy.spatial.transform import Rotation as R
 import mujoco
-from myosuite.utils import gym
+# from myosuite.utils import gym
+import gym
 import numpy as np
 from myosuite.utils.quat_math import mat2euler, euler2quat
 from typing import List
