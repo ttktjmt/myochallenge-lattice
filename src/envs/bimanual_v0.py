@@ -10,6 +10,7 @@ import collections
 import enum
 import os, time
 
+import gym.spaces
 from scipy.spatial.transform import Rotation as R
 import mujoco
 # from myosuite.utils import gym
@@ -23,7 +24,12 @@ from myosuite.envs.myo.base_v0 import BaseV0
 CONTACT_TRAJ_MIN_LENGTH = 100
 
 
-class BimanualEnvV1(BaseV0):
+class CustomBimanualEnv(BaseV0):
+    # TODO: Insert class definition here
+    pass
+
+
+class BimanualEnv(BaseV0):
     DEFAULT_OBS_KEYS = ["time", "myohand_qpos", "myohand_qvel", "pros_hand_qpos", "pros_hand_qvel", "object_qpos",
                         "object_qvel", "touching_body"]
 
@@ -31,17 +37,19 @@ class BimanualEnvV1(BaseV0):
         "reach_dist": -.1,
         "act": 0,
         "fin_dis": -0.5,
-        "grasp": 1, # new reward for grasping
+        # "grasp": 1, # new reward for grasping
         # "fin_open": -1,
         # "lift_height": 2,
         "pass_err": -1,
         # "lift_bonus": 1,
     }
 
-    def __init__(self, model_path, obsd_model_path=None, seed=None, **kwargs):
+    def __init__(self, model_path, obsd_model_path=None, seed=None, render_mode=None, **kwargs):
         # Two step construction (init+setup) is required for pickling to work correctly.
         gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, **kwargs)
         super().__init__(model_path=model_path, obsd_model_path=obsd_model_path, seed=seed, env_credits=self.MYO_CREDIT)
+        self.render_mode = render_mode
+        self.observation_space = gym.spaces.Box(low=-np.inf, high=np.inf, shape=(210,), dtype=np.float32)
         self._setup(**kwargs)
 
     """
@@ -278,7 +286,7 @@ class BimanualEnvV1(BaseV0):
                 ("lift_bonus", elbow_err),
                 ("lift_height", lift_height),
                 ("pass_err", pass_dist + np.log(pass_dist + 1e-3)),
-                ("grasp", grasp_reward),
+                # ("grasp", grasp_reward),
                 # Must keys
                 ("sparse", 0),
                 ("goal_dist", goal_dis), 

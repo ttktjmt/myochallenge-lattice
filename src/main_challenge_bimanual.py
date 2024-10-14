@@ -148,26 +148,26 @@ else:
 
 weighted_reward_keys = {
     "done": args.done_weight,
-    "act_reg": args.act_reg_weight,
-    "sparse": args.sparse_weight,
+    # "act_reg": args.act_reg_weight,
+    # "sparse": args.sparse_weight,
     "solved": args.solved_weight,
-    "alive": args.alive_weight,
-    "pos_dist": args.pos_dist_weight,
-    "rot_dist": args.rot_dist_weight,
-    "reach_dist": args.reach_dist_weight,
-    "reach_dist_xy": args.reach_dist_xy_weight,
-    "reach_dist_z": args.reach_dist_z_weight,
-    "lift_bonus": args.lift_bonus_weight,
-    "pos_dist_z": args.pos_dist_z_weight,
-    "max_app": args.max_app_weight,
-    "contact_hand_obj": args.contact_hand_obj_weight,
-    "rot_palm_obj": args.rot_palm_obj_weight,
-    "min_app": args.min_app_weight,
-    "close_bonus" : args.close_bonus_weight,
-    "obj_shift": args.obj_shift_weight,
-    "palm_dist": args.palm_dist_weight,
-    "open_hand": args.open_hand_weight,
-    "tip_dist": args.tip_dist_weight
+    # "alive": args.alive_weight,
+    # "pos_dist": args.pos_dist_weight,
+    # "rot_dist": args.rot_dist_weight,
+    # "reach_dist": args.reach_dist_weight,
+    # "reach_dist_xy": args.reach_dist_xy_weight,
+    # "reach_dist_z": args.reach_dist_z_weight,
+    # "lift_bonus": args.lift_bonus_weight,
+    # "pos_dist_z": args.pos_dist_z_weight,
+    # "max_app": args.max_app_weight,
+    # "contact_hand_obj": args.contact_hand_obj_weight,
+    # "rot_palm_obj": args.rot_palm_obj_weight,
+    # "min_app": args.min_app_weight,
+    # "close_bonus" : args.close_bonus_weight,
+    # "obj_shift": args.obj_shift_weight,
+    # "palm_dist": args.palm_dist_weight,
+    # "open_hand": args.open_hand_weight,
+    # "tip_dist": args.tip_dist_weight,
 }
 
 env_config = {
@@ -228,7 +228,7 @@ if __name__ == "__main__":
     checkpoint_callback = CheckpointCallback(
         save_freq=max(args.save_every // args.num_envs, 1),
         save_path=TENSORBOARD_LOG,
-        save_vecnormalize=True,
+        save_vecnormalize=False,
         verbose=1,
     )
     tensorboard_callback = TensorboardCallback(args.env_name, info_keywords=ENV_INFO[args.env_name])

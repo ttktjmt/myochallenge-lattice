@@ -5,8 +5,9 @@ import numpy as np
 from definitions import ROOT_DIR  # pylint: disable=import-error
 from myosuite.envs.myo.myobase import register_env_with_variants
 
-
+curr_dir = os.path.dirname(os.path.abspath(__file__))
 myosuite_path = os.path.join(ROOT_DIR, "data", "myosuite")
+# myosuite_path = os.path.join(myosuite.__file__, "envs", "myo")
 
 # Elbow posing ==============================
 register_env_with_variants(id="MuscleElbowPoseFixed-v0",
@@ -405,7 +406,7 @@ gym.envs.registration.register(id='CustomRelocateEnvPhase2-v0',
 
 # add bimanual (ref: myosuite/envs/myo/myochallenge/__init__.py)
 gym.envs.registration.register(id='myoChallengeBimanual-v0',
-        entry_point='envs.bimanual_v0:BimanualEnvV1',
+        entry_point='envs.bimanual_v0:BimanualEnv',
         max_episode_steps=300,
         kwargs={
             'model_path': myosuite_path + '/assets/arm/myoarm_bionic_bimanual.xml',

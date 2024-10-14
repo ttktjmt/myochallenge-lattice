@@ -1,0 +1,49 @@
+FROM python:3.8-slim
+
+ENV DEBIAN_FRONTEND=noninteractive 
+
+# Install dependencies for gym
+RUN apt-get update -q \
+    && apt-get install -y --no-install-recommends \
+    libxcursor-dev \
+    libxrandr-dev \
+    libxinerama-dev \
+    libxi-dev \
+    mesa-common-dev \
+    zip \
+    unzip \
+    make \
+    gcc \
+    g++ \
+    git \
+    libegl1 \
+    libgl1-mesa-dev \
+    libgl1-mesa-glx \
+    libglew-dev \
+    libosmesa6-dev \
+    software-properties-common \
+    patchelf \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create a user
+RUN useradd --create-home gymuser
+USER gymuser
+ENV PATH="/home/gymuser/.local/bin:$PATH"
+
+# Copy requirements and install Python packages
+COPY --chown=gymuser docker/requirements.txt /usr/share/requirements.txt
+RUN pip install --upgrade pip
+RUN pip install -r /usr/share/requirements.txt
+
+# Create necessary directories
+RUN mkdir /home/gymuser/data
+RUN mkdir /home/gymuser/output
+RUN mkdir /home/gymuser/src
+
+# Copy data
+COPY data /home/gymuser/data
+COPY output /home/gymuser/output
+COPY src /home/gymuser/src
+
+CMD [ "python", "/home/gymuser/src/agent_mani_lattice.py" ]

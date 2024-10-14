@@ -22,128 +22,69 @@ class EnvironmentFactory:
             gym.env: the selected environment
         """
         # make myosuite envs
-        if env_name == "MyoFingerPoseFixed":
-            return gym.make("myoFingerPoseFixed-v0")
-        elif env_name == "MyoFingerPoseRandom":
-            return gym.make("myoFingerPoseRandom-v0")
-        elif env_name == "MyoFingerReachFixed":
-            return gym.make("myoFingerReachFixed-v0")
-        elif env_name == "MyoFingerReachRandom":
-            return gym.make("myoFingerReachRandom-v0")
-        elif env_name == "MyoHandPoseFixed":
-            return gym.make("myoHandPoseFixed-v0")
-        elif env_name == "MyoHandPoseRandom":
-            return gym.make("myoHandPoseRandom-v0")
-        elif env_name == "MyoHandReachFixed":
-            return gym.make("myoHandReachFixed-v0")
-        elif env_name == "MyoHandReachRandom":
-            return gym.make("myoHandReachRandom-v0")
-        elif env_name == "MyoElbowPoseFixed":
-            return gym.make("myoElbowPose1D6MFixed-v0")
-        elif env_name == "MyoElbowPoseRandom":
-            return gym.make("myoElbowPose1D6MRandom-v0")
-        elif env_name == "MyoHandKeyTurnFixed":
-            return gym.make("myoHandKeyTurnFixed-v0")
-        elif env_name == "MyoHandKeyTurnRandom":
-            return gym.make("myoHandKeyTurnRandom-v0")
-        elif env_name == "MyoBaodingBallsP1":
-            return gym.make("myoChallengeBaodingP1-v1")
-        elif env_name == "CustomMyoBaodingBallsP1":
-            return gym.make("CustomMyoChallengeBaodingP1-v1", **kwargs)
-        elif env_name == "CustomMyoReorientP1":
-            return gym.make("CustomMyoChallengeDieReorientP1-v0", **kwargs)
-        elif env_name == "CustomMyoReorientP2":
-            return gym.make("CustomMyoChallengeDieReorientP2-v0", **kwargs)
-        elif env_name == "MyoBaodingBallsP2":
-            return gym.make("myoChallengeBaodingP2-v1", **kwargs)
-        elif env_name == "CustomMyoBaodingBallsP2":
-            return gym.make("CustomMyoChallengeBaodingP2-v1", **kwargs)
-        elif env_name == "MixtureModelBaodingEnv":
-            return gym.make("MixtureModelBaoding-v1", **kwargs)
-        elif env_name == "CustomMyoElbowPoseFixed":
-            return gym.make("CustomMyoElbowPoseFixed-v0", **kwargs)
-        elif env_name == "CustomMyoElbowPoseRandom":
-            return gym.make("CustomMyoElbowPoseRandom-v0", **kwargs)
-        elif env_name == "CustomMyoFingerPoseFixed":
-            return gym.make("CustomMyoFingerPoseFixed-v0", **kwargs)
-        elif env_name == "CustomMyoFingerPoseRandom":
-            return gym.make("CustomMyoFingerPoseRandom-v0", **kwargs)
-        elif env_name == "CustomMyoHandPoseFixed":
-            return gym.make("CustomMyoHandPoseFixed-v0", **kwargs)
-        elif env_name == "CustomMyoHandPoseRandom":
-            return gym.make("CustomMyoHandPoseRandom-v0", **kwargs)
-        elif env_name == "CustomMyoPenTwirlRandom":
-            return gym.make("CustomMyoHandPenTwirlRandom-v0", **kwargs)
-        elif env_name == "CustomChaseTag":
-            return gym.make("CustomChaseTagEnv-v0", **kwargs)
-        elif env_name == 'CustomRelocateEnv':
-            return gym.make("CustomRelocateEnv-v0", **kwargs)
-        elif env_name == 'CustomRelocateEnvPhase2':
-            return gym.make("CustomRelocateEnvPhase2-v0", **kwargs)
-        elif env_name == "RelocateEnvPhase2":
-            return gym.make("myoChallengeRelocateP2-v0", **kwargs)
-        elif env_name == "ChaseTagEnvPhase2":
-            return gym.make("myoChallengeChaseTagP2-v0", **kwargs)
-        # add envs for myochallenge 2024
-        elif env_name == "Bimanual":
-            return gym.make("myoChallengeBimanual-v0", **kwargs)
+        env_map = {
+            "MyoFingerPoseFixed":               "myoFingerPoseFixed-v0",
+            "MyoFingerPoseRandom":              "myoFingerPoseRandom-v0",
+            "MyoFingerReachFixed":              "myoFingerReachFixed-v0",
+            "MyoFingerReachRandom":             "myoFingerReachRandom-v0",
+            "MyoHandPoseFixed":                 "myoHandPoseFixed-v0",
+            "MyoHandPoseRandom":                "myoHandPoseRandom-v0",
+            "MyoHandReachFixed":                "myoHandReachFixed-v0",
+            "MyoHandReachRandom":               "myoHandReachRandom-v0",
+            "MyoElbowPoseFixed":                "myoElbowPose1D6MFixed-v0",
+            "MyoElbowPoseRandom":               "myoElbowPose1D6MRandom-v0",
+            "MyoHandKeyTurnFixed":              "myoHandKeyTurnFixed-v0",
+            "MyoHandKeyTurnRandom":             "myoHandKeyTurnRandom-v0",
+            "MyoBaodingBallsP1":                "myoChallengeBaodingP1-v1",
+            "CustomMyoBaodingBallsP1":          "CustomMyoChallengeBaodingP1-v1",
+            "CustomMyoReorientP1":              "CustomMyoChallengeDieReorientP1-v0",
+            "CustomMyoReorientP2":              "CustomMyoChallengeDieReorientP2-v0",
+            "MyoBaodingBallsP2":                "myoChallengeBaodingP2-v1",
+            "CustomMyoBaodingBallsP2":          "CustomMyoChallengeBaodingP2-v1",
+            "MixtureModelBaodingEnv":           "MixtureModelBaoding-v1",
+            "CustomMyoElbowPoseFixed":          "CustomMyoElbowPoseFixed-v0",
+            "CustomMyoElbowPoseRandom":         "CustomMyoElbowPoseRandom-v0",
+            "CustomMyoFingerPoseFixed":         "CustomMyoFingerPoseFixed-v0",
+            "CustomMyoFingerPoseRandom":        "CustomMyoFingerPoseRandom-v0",
+            "CustomMyoHandPoseFixed":           "CustomMyoHandPoseFixed-v0",
+            "CustomMyoHandPoseRandom":          "CustomMyoHandPoseRandom-v0",
+            "CustomMyoPenTwirlRandom":          "CustomMyoHandPenTwirlRandom-v0",
+            "CustomChaseTag":                   "CustomChaseTagEnv-v0",
+            'CustomRelocateEnv':                "CustomRelocateEnv-v0",
+            'CustomRelocateEnvPhase2':          "CustomRelocateEnvPhase2-v0",
+            "RelocateEnvPhase2":                "myoChallengeRelocateP2-v0",
+            "ChaseTagEnvPhase2":                "myoChallengeChaseTagP2-v0",
+            "Bimanual":                         "myoChallengeBimanual-v0",
+            "MuscleElbowPoseFixed":             "MuscleElbowPoseFixed-v0",
+            "MuscleElbowPoseRandom":            "MuscleElbowPoseRandom-v0",
+            "MuscleFingerPoseFixed":            "MuscleFingerPoseFixed-v0",
+            "MuscleFingerPoseRandom":           "MuscleFingerPoseRandom-v0",
+            "MuscleHandPoseFixed":              "MuscleHandPoseFixed-v0",
+            "MuscleHandPoseRandom":             "MuscleHandPoseRandom-v0",
+            "MuscleHandPoseRandomHalfRange":    "MuscleHandPoseRandomHalfRange-v0",
+            "MuscleFingerReachFixed":           "MuscleFingerReachFixed-v0",
+            "MuscleFingerReachRandom":          "MuscleFingerReachRandom-v0",
+            "MuscleHandReachFixed":             "MuscleHandReachFixed-v0",
+            "MuscleHandReachRandom":            "MuscleHandReachRandom-v0",
+            "MuscleBaodingEnvP0":               "MuscleBaodingP0-v1",
+            "MuscleBaodingEnvP1":               "MuscleBaodingP1-v1",
+            "MuscleBaodingEnvP2":               "MuscleBaodingP2-v1",
+            "MuscleBaodingEnvP3":               "MuscleBaodingP3-v1",
+            "MuscleReorientEnvP0":              "MuscleDieReorientP0-v0",
+            "MuscleReorientEnvP1":              "MuscleDieReorientP1-v0",
+            "MuscleReorientEnvP2":              "MuscleDieReorientP2-v0",
+            "MuscleLegsStandEnv":               "MuscleLegDemo-v0",
+            "MuscleLegsWalkEnv":                "MuscleLegWalk-v0",
+            "WalkerBulletEnv":                  "Walker2DBulletEnv-v0",
+            "HalfCheetahBulletEnv":             "HalfCheetahBulletEnv-v0",
+            "AntBulletEnv":                     "AntBulletEnv-v0",
+            "HopperBulletEnv":                  "HopperBulletEnv-v0",
+            "HumanoidBulletEnv":                "HumanoidBulletEnv-v0",
+            "HumanoidFlagrunBulletEnv":         "HumanoidFlagrunBulletEnv-v0",
+            "HumanoidFlagrunHarderBulletEnv":   "HumanoidFlagrunHarderBulletEnv-v0",
+        }
 
-        # Muscle environments
-        elif env_name == "MuscleElbowPoseFixed":
-            return gym.make("MuscleElbowPoseFixed-v0", **kwargs)
-        elif env_name == "MuscleElbowPoseRandom":
-            return gym.make("MuscleElbowPoseRandom-v0", **kwargs)
-        elif env_name == "MuscleFingerPoseFixed":
-            return gym.make("MuscleFingerPoseFixed-v0", **kwargs)
-        elif env_name == "MuscleFingerPoseRandom":
-            return gym.make("MuscleFingerPoseRandom-v0", **kwargs)
-        elif env_name == "MuscleHandPoseFixed":
-            return gym.make("MuscleHandPoseFixed-v0", **kwargs)
-        elif env_name == "MuscleHandPoseRandom":
-            return gym.make("MuscleHandPoseRandom-v0", **kwargs)
-        elif env_name == "MuscleHandPoseRandomHalfRange":
-            return gym.make("MuscleHandPoseRandomHalfRange-v0", **kwargs)
-        elif env_name == "MuscleFingerReachFixed":
-            return gym.make("MuscleFingerReachFixed-v0", **kwargs)
-        elif env_name == "MuscleFingerReachRandom":
-            return gym.make("MuscleFingerReachRandom-v0", **kwargs)
-        elif env_name == "MuscleHandReachFixed":
-            return gym.make("MuscleHandReachFixed-v0", **kwargs)
-        elif env_name == "MuscleHandReachRandom":
-            return gym.make("MuscleHandReachRandom-v0", **kwargs)
-        elif env_name == "MuscleBaodingEnvP0":
-            return gym.make("MuscleBaodingP0-v1", **kwargs)
-        elif env_name == "MuscleBaodingEnvP1":
-            return gym.make("MuscleBaodingP1-v1", **kwargs)
-        elif env_name == "MuscleBaodingEnvP2":
-            return gym.make("MuscleBaodingP2-v1", **kwargs)
-        elif env_name == "MuscleBaodingEnvP3":
-            return gym.make("MuscleBaodingP3-v1", **kwargs)
-        elif env_name == "MuscleReorientEnvP0":
-            return gym.make("MuscleDieReorientP0-v0", **kwargs)
-        elif env_name == "MuscleReorientEnvP1":
-            return gym.make("MuscleDieReorientP1-v0", **kwargs)
-        elif env_name == "MuscleReorientEnvP2":
-            return gym.make("MuscleDieReorientP2-v0", **kwargs)
-        elif env_name == "MuscleLegsStandEnv":
-            return gym.make("MuscleLegDemo-v0", **kwargs)
-        elif env_name == "MuscleLegsWalkEnv":
-            return gym.make("MuscleLegWalk-v0", **kwargs)
-        
-        # PyBullet environments
-        elif env_name == "WalkerBulletEnv":
-            return gym.make("Walker2DBulletEnv-v0", **kwargs)
-        elif env_name == "HalfCheetahBulletEnv":
-            return gym.make("HalfCheetahBulletEnv-v0", **kwargs)
-        elif env_name == "AntBulletEnv":
-            return gym.make("AntBulletEnv-v0", **kwargs)
-        elif env_name == "HopperBulletEnv":
-            return gym.make("HopperBulletEnv-v0", **kwargs)
-        elif env_name == "HumanoidBulletEnv":
-            return gym.make("HumanoidBulletEnv-v0", **kwargs)
-        elif env_name == "HumanoidFlagrunBulletEnv":
-            return gym.make("HumanoidFlagrunBulletEnv-v0", **kwargs)
-        elif env_name == "HumanoidFlagrunHarderBulletEnv":
-            return gym.make("HumanoidFlagrunHarderBulletEnv-v0", **kwargs)
+        if env_name in env_map:
+            return gym.make(env_map[env_name], **kwargs)
         else:
             raise ValueError("Environment name not recognized:", env_name)

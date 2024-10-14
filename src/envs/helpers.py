@@ -136,12 +136,14 @@ def create_vec_env(
             env_path = os.path.join(
                 load_path, f"{config['env_name']}_{checkpoint_num}.pkl"
             )
+            print(f"Checking for environment file at: {env_path}")
             if os.path.exists(env_path):
                 envs = VecNormalize.load(env_path, envs)
             else:
                 env_path = os.path.join(
                     load_path, f"rl_model_vecnormalize_{checkpoint_num}_steps.pkl"
                 ) 
+                print(f"Checking for environment file at: {env_path}")
                 if os.path.exists(env_path):
                     envs = VecNormalize.load(env_path, envs)     
                 else:
